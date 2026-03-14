@@ -39,7 +39,7 @@ All file data flows **directly browser-to-browser** — nothing touches any serv
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/eqwom/flashpoint.git
+git clone https://github.com/eqwom/FlashPoint.git
 
 # 2. Enter the project folder
 cd flashpoint
