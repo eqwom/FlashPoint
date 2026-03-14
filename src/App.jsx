@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import Peer from 'peerjs'
 
 const CHUNK_SIZE = 65536
 
@@ -98,11 +99,7 @@ export default function App() {
   const startTimeRef = useRef(0)
 
   useEffect(() => {
-    const script = document.createElement('script')
-    script.src = 'https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js'
-    script.onload = initPeer
-    script.onerror = () => handleError('Failed to load PeerJS. Check your connection.')
-    document.head.appendChild(script)
+    initPeer()
     return () => {
       peerRef.current?.destroy()
       clearInterval(speedTimerRef.current)
@@ -111,7 +108,7 @@ export default function App() {
   }, [])
 
   function initPeer() {
-    const peer = new window.Peer(undefined, { debug: 0 })
+    const peer = new Peer(undefined, { debug: 0 })
     peerRef.current = peer
 
     peer.on('open', id => {
